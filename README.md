@@ -31,10 +31,16 @@ Dependencies
 The following is a list of expected dependencies for the bot
 
 'simple-xmpp' -> for the xmpp. It would be nice if the bot could invite other people.
+
 "redis"       -> For redis
+
 'clog'        -> Colorful console output for your applications in NodeJS. I think we can find a better one
+
 'node-schedule' -> A cron-like and not-cron-like job scheduler for Node. This one is pretty cool. :)
 
+
 Later we'll probably also need:
+
 "moment"      -> A lightweight javascript date library for parsing, manipulating, and formatting dates.
+
 "sha1"        -> We will need it later if we're going to deal with sensitive information
