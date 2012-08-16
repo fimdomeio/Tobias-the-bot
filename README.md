@@ -12,6 +12,7 @@ TOBIAS THE BOT DESIGN PLAN
 
 Bot runs a xmpp client
 Settings like username and password are read from a settings file.
+
 1 When it recieves a new message:
 Check if it's part of a previous command (value stored on redis for 120 seconds)
 Else check if there's any file on commands directory corresponding to the first word of the command
