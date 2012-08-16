@@ -8,9 +8,11 @@ The Plan
 ---------
 
 RFC :P
+
 TOBIAS THE BOT DESIGN PLAN
 
-Bot runs a xmpp client
+
+Bot, is coded in node.js and  runs a xmpp client
 Settings like username and password are read from a settings file.
 
 1 When it recieves a new message:
@@ -44,3 +46,16 @@ Later we'll probably also need:
 "moment"      -> A lightweight javascript date library for parsing, manipulating, and formatting dates.
 
 "sha1"        -> We will need it later if we're going to deal with sensitive information
+
+
+STUFF TO READ
+-------------
+
+How to store Node.js deployment settings/configuration files?
+
+http://stackoverflow.com/questions/5869216/how-to-store-node-js-deployment-settings-configuration-files
+
+
+Require with a regular expression?
+
+https://github.com/fent/require-all
