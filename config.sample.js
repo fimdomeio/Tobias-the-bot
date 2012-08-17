@@ -1,7 +1,10 @@
 var config = {};
 
+config.version = {};
 config.xmpp = {};
 config.admin = {};
+
+config.version.number = "2.0";
 
 //Change this settings to your match your configuration
 config.xmpp.jid       = 'bot@domain';
