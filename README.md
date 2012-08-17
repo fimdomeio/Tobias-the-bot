@@ -3,6 +3,9 @@ Tobias-the-bot
 
 A simple bot framework
 
+Install
+-------
+Rename config.sample.js to config.js and edit to match your settings. 
 
 The Plan
 ---------
