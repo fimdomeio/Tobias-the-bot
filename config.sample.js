@@ -14,6 +14,6 @@ config.xmpp.port      = '5222';
 
 //This is the bot administrator
 config.admin.name = 'Your Name';
-config.admin.jid = 'you@email';
+config.admin.jid = 'you@host';
 
 module.exports = config;
