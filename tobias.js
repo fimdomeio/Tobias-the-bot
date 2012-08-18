@@ -1,4 +1,5 @@
 var config = require('./config'); //reads configuration variables
+var log = require('custom-logger').config({level: 0 });
 var xmpp = require('simple-xmpp');
 
 
@@ -12,7 +13,7 @@ xmpp.connect({
 
 //Let Admin know when online
 xmpp.on('online', function() {
-    console.log('Oh yeah! Tobias is online');
+    log.info('Oh yeah! Tobias is online');
 	xmpp.send(config.admin.jid, "I'm awake, I'm awake");
 });
 

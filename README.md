@@ -39,7 +39,7 @@ The following is a list of expected dependencies for the bot
 
 "redis"       -> For redis
 
-'clog'        -> Colorful console output for your applications in NodeJS. I think we can find a better one
+'custom-logger'        -> For colorful logging and multiple debug levels.
 
 'node-schedule' -> A cron-like and not-cron-like job scheduler for Node. This one is pretty cool. :)
 
