@@ -2,6 +2,13 @@ var config = require('./config'); //reads configuration variables
 var log = require('custom-logger').config({level: 0 });
 var xmpp = require('simple-xmpp');
 var fs = require('fs');
+var i18n = require('i18n');
+i18n.configure({
+	//setup some locales - other locales default to en silently
+	locales:['en', 'pt'],
+    // where to register __() and __n() to, might be "global" if you know what you are doing
+    register: global
+});
 
 //Connect to xmpp server
 xmpp.connect({
@@ -44,9 +51,11 @@ xmpp.on('chat', function(from, message) {
 	// else find which command corresponde to the keyword sent
 	xmpp.send(from, "recieved a "+args[0]+ ' command.');
 	log.warn(typeof commands[args[0]]);
-	if(typeof commands[args[0]] != undefined){
+	if(typeof commands[args[0]] != 'undefined'){
 		log.info('Emitting start for ' + args[0] + ' command.');
 		commands[args[0]].emit('start',from,message);
+	}else{
+		xmpp.send(from, __("That's not a valid command."));
 	}
 	/*
 	 * if(commandfiles.indexOf(args[0]+'.js') != -1){
