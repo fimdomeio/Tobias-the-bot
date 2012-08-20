@@ -3,8 +3,12 @@ var config = {};
 config.version = {};
 config.xmpp = {};
 config.admin = {};
+config.i18n = {};
 
 config.version.number = "2.0";
+
+//LANGUAGE
+config.i18n.lang = 'languagecode';
 
 //Change this settings to your match your configuration
 config.xmpp.jid       = 'bot@domain';
