@@ -9,6 +9,7 @@ i18n.configure({
     // where to register __() and __n() to, might be "global" if you know what you are doing
     register: global
 });
+i18n.setLocale(config.i18n.lang);
 
 //Connect to xmpp server
 xmpp.connect({
