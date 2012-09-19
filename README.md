@@ -5,7 +5,6 @@ A simple bot framework
 
 Install
 -------
-This software is not ready yet proceed at your own risk.
 Rename config.sample.js to config.js and edit to match your settings. 
 
 The Plan
