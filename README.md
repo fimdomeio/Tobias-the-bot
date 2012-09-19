@@ -3,6 +3,8 @@ Tobias-the-bot
 
 A simple bot framework
 
+i![ScreenShot](https://raw.github.com/homem-arvore/Tobias-the-bot/master/tobias-in-action.png)
+
 Install
 -------
 Rename config.sample.js to config.js and edit to match your settings. 
