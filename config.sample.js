@@ -1,3 +1,5 @@
+//RENAME THIS FILE TO CONFIG.JS AND fill with the correct values for your configuration 
+
 var config = {};
 
 config.version = {};
@@ -5,7 +7,7 @@ config.xmpp = {};
 config.admin = {};
 config.i18n = {};
 
-config.version.number = "2.0";
+config.version.number = "2.1";
 
 //LANGUAGE
 config.i18n.lang = 'languagecode';
@@ -20,4 +22,17 @@ config.xmpp.port      = '5222';
 config.admin.name = 'Your Name';
 config.admin.jid = 'you@host';
 
+
+// COMMANDS CONFIGURATION
+
+//WEATHER
+config.weather = {};
+
+config.weather.wuAPI = 'get your key at weather underground';
+config.weather.lang = '2 uppercase letters for language like BR';
+config.weather.defaultCity = 'if your user does not type any city what should we pick?';
+
+
+
 module.exports = config;
+

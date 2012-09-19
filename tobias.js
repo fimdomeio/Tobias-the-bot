@@ -2,6 +2,8 @@ var config = require('./config'); //reads configuration variables
 var log = require('custom-logger').config({level: 0 });
 var xmpp = require('simple-xmpp');
 var fs = require('fs');
+var moment = require('moment'); //for parsing, validating, manipulating, and formatting dates.
+var schedule = require('node-schedule'); //for scheduling tasks
 var i18n = require('i18n');
 i18n.configure({
 	//setup some locales - other locales default to en silently
@@ -16,18 +18,23 @@ xmpp.connect({
     jid         : config.xmpp.jid,
     password    : config.xmpp.password,
     host        : config.xmpp.host,
-    port        : config.xmpp.port
+	port        : config.xmpp.port
 });
 
-//loads all bote nodejs commands
+moment.lang(config.i18n.lang);
+
+var global_commandState = {}; //global variable that stores current command step and stuff 
+
+//loads all bot nodejs commands
 var commands = {};
 fs.readdir(__dirname+'/commands',function(err, files){
+	var i;
 	if(err){
 		log.error(err);
 	}else{
-		for(var i = 0; i < files.length; i++){
+		for(i = 0; i < files.length; i++){
 			var splitFileName = files[i].split(".");
-			if(splitFileName.pop() == 'js'){
+			if(splitFileName.pop() === 'js'){
 				var className = files[i].substr(0, files[i].lastIndexOf('.')); 
 				commands[className] = require(__dirname + '/commands/' + files[i]);
 			}
@@ -35,7 +42,6 @@ fs.readdir(__dirname+'/commands',function(err, files){
 	}
 	console.warn(commands);
 });
-
 
 //Let Admin know when online
 xmpp.on('online', function() {
@@ -48,35 +54,26 @@ xmpp.on('online', function() {
 xmpp.on('chat', function(from, message) {
 	var args = message.split(' ');
 	// TODO Is it part of a previous command?
-	// TODO if true request next step
+	// http://stackoverflow.com/a/4702844
+	var commandState = global_commandState;
+	if (typeof commandState[from] === 'undefined') { // IF IT'S A NEW COMMAND
+		commandState[from] = {};
+		commandState[from].command = args[0];
+		commandState[from].step = 0;
+	}else{ // IF IT'S PART OF A PREVIOUS COMMAND
+		commandState[from].step += 1;
+	}
+	global.xmpp = xmpp;	
 	// else find which command corresponde to the keyword sent
-	xmpp.send(from, "recieved a "+args[0]+ ' command.');
-	log.warn(typeof commands[args[0]]);
-	if(typeof commands[args[0]] != 'undefined'){
-		log.info('Emitting start for ' + args[0] + ' command.');
-		commands[args[0]].emit('start',from,message);
+	if(typeof commands[commandState[from].command] !== 'undefined'){
+		var results = commands[commandState[from].command].run(commandState[from].step,from,message);
+		if(results === "end"){
+			delete commandState[from];
+		}
 	}else{
 		xmpp.send(from, __("That's not a valid command."));
 	}
-	/*
-	 * if(commandfiles.indexOf(args[0]+'.js') != -1){
-		xmpp.send(from, "commands exists");
-		command = require('./commands/'+args[0]+'.js');
-		command.emit('start', from, message);
-		
-		//THIS CODE IS MISPLACED AND NOT WORKING CORRECTLY
-		command.on('message', function(from, reply){
-			xmpp.send(from, reply);
-			log.warn('should send message');
-		});
-	}else{
-		xmpp.send(from, "command doesn't exist");
-	} */
-	//log.warn(require.resolve('./commands/'+args[0]));
-	//command = require('./commands/'+args[0]);
-	// run the corresponding file
 });
-
 //Run time based tasks
 
 
