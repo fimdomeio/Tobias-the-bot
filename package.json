@@ -1,0 +1,24 @@
+{
+  "name": "Tobias-the-Bot",
+  "version": "0.4.0",
+  "description": "A XMPP Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fimdomeio/Tobias-the-bot.git"
+  },
+  "author": "fimdomeio",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/fimdomeio/Tobias-the-bot/issues"
+  },
+  "homepage": "https://github.com/fimdomeio/Tobias-the-bot",
+  "dependencies": {
+    "simple-xmpp": "~0.1.92",
+    "node-stringprep": "~0.7.0",
+    "custom-logger": "~0.3.0"
+  }
+}
